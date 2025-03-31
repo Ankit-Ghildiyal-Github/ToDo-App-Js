@@ -1,0 +1,36 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+h1 {
+    text-align: center;
+    position: relative;
+    margin-top: 10px;
+    width: 100%;
+}
+
+form {
+    margin-top: 20px;
+}
+
+.input-group {
+    max-width: 500px;
+    width: 100%;
+}
+
+.hover-button {
+    display: none;
+    margin-left: 10px;
+  }
+  
+  /* Show the button when hovering over the list item */
+  .list-group-item:hover .hover-button {
+    display: inline-block;
+  }
