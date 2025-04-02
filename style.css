@@ -28,9 +28,22 @@ form {
 .hover-button {
     display: none;
     margin-left: 10px;
+    position: absolute;
+    right: 10px; /* Aligns buttons to the right */
+    top: 50%; /* Default positioning */
+    transform: translateY(-50%); 
   }
   
   /* Show the button when hovering over the list item */
-  .list-group-item:hover .hover-button {
+   .list-group-item:hover .hover-button {
     display: inline-block;
-  }
+  } 
+
+  .list-group .list-group-item {
+    padding-left: 10px !important;
+    padding: .9rem 15rem;
+}
+
+.hover-button:nth-child(2) { /* Targets the second button */
+    right: 80px; /* Moves the second button to the left */
+}

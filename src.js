@@ -38,8 +38,9 @@ displayItems()
 function createListItem(value, itemId){
   return `<a href="#" class="list-group-item list-group-item-action">
             ${value}
-            <button class="btn-primary btn-sm hover-button" onClick="getUserInput()">Edit</button>
             <button class="btn-danger btn-sm hover-button" onClick="removeItem('${itemId}')">Delete</button>
+            <button class="btn-primary btn-sm hover-button" onClick="getUserInput()">Edit</button>
+            
         </a>`
 }
 
