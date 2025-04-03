@@ -39,7 +39,7 @@ function createListItem(value, itemId){
   return `<a href="#" class="list-group-item list-group-item-action">
             ${value}
             <button class="btn-danger btn-sm hover-button" onClick="removeItem('${itemId}')">Delete</button>
-            <button class="btn-primary btn-sm hover-button" onClick="getUserInput()">Edit</button>
+            <button class="btn-primary btn-sm hover-button" onClick="getUserInput('${itemId}')">Edit</button>
             
         </a>`
 }
@@ -49,12 +49,12 @@ function removeItem(itemId){
   location.reload();
 }
 
-function getUserInput() {
+function getUserInput(itemId) {
   // Create input field
-  let input = document.createElement("input");
-  input.type = "text";
-  input.placeholder = "Type something...";
-  document.body.appendChild(input);
+  let inputBox = document.createElement("input");
+  inputBox.type = "text";
+  inputBox.value = localStorage.getItem(itemId);
+  document.body.appendChild(inputBox);
 
   // Create submit button
   let button = document.createElement("button");
@@ -63,8 +63,15 @@ function getUserInput() {
 
   // Handle button click
   button.addEventListener("click", () => {
-      console.log("User entered:", input.value);
-      document.body.removeChild(input);
+      console.log("User entered:", inputBox.value);
+      console.log("Item Id:", itemId);
+      editItemInLocalStorage(inputBox.value, itemId);
+      document.body.removeChild(inputBox);
       document.body.removeChild(button);
   });
+}
+
+function editItemInLocalStorage(text, itemId){
+  localStorage.setItem(itemId, text);
+  location.reload();
 }
