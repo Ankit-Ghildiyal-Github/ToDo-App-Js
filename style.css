@@ -29,23 +29,37 @@ form {
     display: none;
     margin-left: 10px;
     position: absolute;
-    right: 10px; /* Aligns buttons to the right */
-    top: 50%; /* Default positioning */
-    transform: translateY(-50%); 
-  }
-  
-  /* Show the button when hovering over the list item */
-   .list-group-item:hover .hover-button {
-    display: inline-block;
-  } 
+    right: 10px;
+    /* Aligns buttons to the right */
+    top: 50%;
+    /* Default positioning */
+    transform: translateY(-50%);
+}
 
-  .list-group .list-group-item {
+/* Show the button when hovering over the list item */
+.list-group-item:hover .hover-button {
+    display: inline-block;
+}
+
+.list-group .list-group-item {
     padding-left: 10px !important;
     padding: .9rem 15rem;
 }
 
-.hover-button:nth-child(2) { /* Targets the second button */
-    right: 80px; /* Moves the second button to the left */
+.list-group .list-group-item.strikethrough {
+    text-decoration: line-through !important;
+}
+
+.hover-button:nth-child(2) {
+    /* Targets the second button */
+    right: 80px;
+    /* Moves the second button to the left */
+}
+
+.hover-button:nth-child(3) {
+    /* Targets the second button */
+    right: 134px;
+    /* Moves the second button to the left */
 }
 
 /* Overlay background */
@@ -55,8 +69,10 @@ form {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Dark transparent background */
-    backdrop-filter: blur(5px); /* Blurs the background */
+    background: rgba(0, 0, 0, 0.4);
+    /* Dark transparent background */
+    backdrop-filter: blur(5px);
+    /* Blurs the background */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,7 +80,8 @@ form {
 }
 
 .modal-box {
-    position: relative; /* Ensures absolute positioning inside */
+    position: relative;
+    /* Ensures absolute positioning inside */
     background: white;
     padding: 20px;
     border-radius: 10px;
@@ -83,4 +100,6 @@ form {
     justify-content: center;
 }
 
-
+.strikethrough {
+    text-decoration: line-through;
+}

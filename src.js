@@ -21,27 +21,52 @@ function displayItems() {
     const value = localStorage.getItem(itemId); // Get the value associated with the key
 
     if (value != null) {
-      item = item + createListItem(value, itemId)
+      item = createListItem(value, itemId)
+      document.querySelector("#list-group").appendChild(item);
     }
-
-
   }
-  document.getElementById('list-group').innerHTML = item;
 }
 
 function isEmptyOrWhitespace(str) {
   return !str || str.trim().length === 0;
 }
 
-displayItems()
-
 function createListItem(value, itemId) {
-  return `<a href="#" class="list-group-item list-group-item-action">
-            ${value}
-            <button class="btn-danger btn-sm hover-button" onClick="removeItem('${itemId}')">Delete</button>
-            <button class="btn-primary btn-sm hover-button" onClick="getUserInput('${itemId}')">Edit</button>
-            
-        </a>`
+  let anchor = document.createElement("a");
+  anchor.href = "#";
+  anchor.classList.add("list-group-item", "list-group-item-action");
+  if (value.startsWith("?")) {
+    anchor.classList.add("strikethrough");
+    value = value.slice(1);
+  }
+  anchor.innerHTML = `${value}`; // Insert text content
+
+  // Create delete button
+  let deleteButton = document.createElement("button");
+  deleteButton.classList.add("btn-danger", "btn-sm", "hover-button");
+  deleteButton.textContent = "Delete";
+  deleteButton.onclick = () => removeItem(itemId); // Attach click event
+
+  // Create edit button
+  let editButton = document.createElement("button");
+  editButton.classList.add("btn-primary", "btn-sm", "hover-button");
+  editButton.textContent = "Edit";
+  editButton.onclick = () => getUserInput(itemId); // Attach click event
+
+  // Create done button
+  let doneButton = document.createElement("button");
+  doneButton.classList.add("btn-success", "btn-sm", "hover-button");
+  doneButton.textContent = "Done";
+  doneButton.onclick = () => markAsDone(itemId); // Attach click event
+
+  // Append buttons to the anchor
+  anchor.appendChild(deleteButton);
+  anchor.appendChild(editButton);
+  anchor.appendChild(doneButton);
+
+  //document.querySelector(".list-group-item").classList.add("completed");
+
+  return anchor;
 }
 
 function removeItem(itemId) {
@@ -95,3 +120,11 @@ function editItemInLocalStorage(text, itemId) {
   localStorage.setItem(itemId, text);
   location.reload();
 }
+
+function markAsDone(itemId) {
+  const value = "?" + localStorage.getItem(itemId);
+  localStorage.setItem(itemId, value)
+  location.reload();
+}
+
+displayItems()
